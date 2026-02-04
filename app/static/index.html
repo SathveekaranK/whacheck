@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Phone Validator - AI-Powered Validation</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🤖</span>
+                <h1>Agentic Validator</h1>
+            </div>
+            <p class="tagline">AI-Powered Phone Validation System</p>
+        </header>
+
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="single">
+                <span class="tab-icon">📱</span>
+                Single Validation
+            </button>
+            <button class="tab-btn" data-tab="batch">
+                <span class="tab-icon">📊</span>
+                Batch Upload
+            </button>
+        </div>
+
+        <!-- Single Validation Tab -->
+        <div class="tab-content active" id="single-tab">
+            <div class="card">
+                <h2>Validate Phone Number</h2>
+                <div class="form-group">
+                    <label for="phoneInput">Phone Number</label>
+                    <input type="text" id="phoneInput" placeholder="+1 415 555 2671" class="input-field">
+                </div>
+                <div class="form-group">
+                    <label for="countryInput">Country Code</label>
+                    <select id="countryInput" class="input-field">
+                        <option value="US">United States (US)</option>
+                        <option value="IN">India (IN)</option>
+                        <option value="GB">United Kingdom (GB)</option>
+                        <option value="CA">Canada (CA)</option>
+                        <option value="AU">Australia (AU)</option>
+                        <option value="HK">Hong Kong (HK)</option>
+                        <option value="SG">Singapore (SG)</option>
+                    </select>
+                </div>
+                <button id="validateBtn" class="btn-primary">
+                    <span>Validate Now</span>
+                    <span class="btn-icon">→</span>
+                </button>
+            </div>
+
+            <!-- Results Card -->
+            <div class="results-container" id="singleResults" style="display: none;">
+                <div class="card results-card">
+                    <div class="results-header">
+                        <h3>Validation Results</h3>
+                        <span class="status-badge" id="statusBadge"></span>
+                    </div>
+                    
+                    <div class="confidence-score">
+                        <div class="score-label">Confidence Score</div>
+                        <div class="score-value" id="confidenceScore">--</div>
+                        <div class="score-bar">
+                            <div class="score-fill" id="scoreFill"></div>
+                        </div>
+                    </div>
+
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <span class="result-label">Formatted Number</span>
+                            <span class="result-value" id="formattedNumber">--</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Country</span>
+                            <span class="result-value" id="country">--</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Carrier</span>
+                            <span class="result-value" id="carrier">--</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Line Type</span>
+                            <span class="result-value" id="lineType">--</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">WhatsApp Available</span>
+                            <span class="result-value" id="whatsapp">--</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Account Type</span>
+                            <span class="result-value" id="accountType">--</span>
+                        </div>
+                    </div>
+
+                    <div class="reasoning-section">
+                        <h4>AI Decision Reasoning</h4>
+                        <p id="reasoning">--</p>
+                    </div>
+
+                    <div class="metadata-section">
+                        <div class="metadata-item">
+                            <span>Processing Time:</span>
+                            <strong id="processingTime">--</strong>
+                        </div>
+                        <div class="metadata-item">
+                            <span>Strategy:</span>
+                            <strong id="strategy">--</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Batch Upload Tab -->
+        <div class="tab-content" id="batch-tab">
+            <div class="card">
+                <h2>Batch CSV Upload</h2>
+                <div class="drop-zone" id="dropZone">
+                    <div class="drop-icon">📂</div>
+                    <div class="drop-text">Drag & Drop your CSV file here</div>
+                    <div class="drop-hint">or click to browse</div>
+                    <input type="file" id="fileInput" accept=".csv" hidden>
+                </div>
+
+                <div class="progress-container" id="progressContainer" style="display: none;">
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="progressBar"></div>
+                    </div>
+                    <div class="status-text" id="statusText">Processing...</div>
+                </div>
+            </div>
+
+            <!-- Batch Results -->
+            <div class="results-container" id="batchResults" style="display: none;">
+                <div class="card">
+                    <div class="batch-header">
+                        <h3>Validation Results</h3>
+                        <button id="downloadBtn" class="btn-secondary">
+                            <span>Download CSV</span>
+                            <span class="btn-icon">⬇</span>
+                        </button>
+                    </div>
+                    <div class="table-container">
+                        <table id="resultsTable">
+                            <thead>
+                                <tr>
+                                    <th>Phone Number</th>
+                                    <th>Formatted</th>
+                                    <th>Country</th>
+                                    <th>Carrier</th>
+                                    <th>WhatsApp</th>
+                                    <th>Confidence</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

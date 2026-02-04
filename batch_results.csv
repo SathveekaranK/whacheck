@@ -1,0 +1,7 @@
+Original_Phone,Formatted_Number,Line_Type,Carrier,Country,WhatsApp_Available,Confidence_Score,Validation_Trace
+'14155552671,+14155552671,special_services,,United States of America,False,60.0,"High priority market, proceed with immediate validation."
+'1234567890,,,,American Samoa,False,15.0,Number format is invalid according to NumVerify.
+'919876543210,919876543210,unknown (error),unknown,IN,True,90.0,"High priority market, proceed with immediate validation."
+'442012345678,+442012345678,landline,,United Kingdom of Great Britain and Northern Ireland,False,60.0,"Standard priority, proceeding with validation."
+'85291234567,+85291234567,mobile,Hutchison Telephone Company Ltd (3 Hong Kong),"Hong Kong, China",True,90.0,"Standard priority, proceeding with validation."
+'917094801807,+917094801807,mobile,Vodafone Idea Ltd (formerly Vodafone India Ltd),India (Republic of),True,90.0,"High priority market, proceed with immediate validation."
